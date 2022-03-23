@@ -12,12 +12,12 @@ public class Movement : MonoBehaviour
     
     void Update()
     {
-        _moveHorizontal = Input.GetAxisRaw ("Horizontal");
-        _moveVertical = Input.GetAxisRaw ("Vertical");
+        var moveHorizontal = Input.GetAxisRaw ("Horizontal");
+        var moveVertical = Input.GetAxisRaw ("Vertical");
 
-        if (_moveHorizontal != 0 || _moveVertical != 0)
+        if (moveHorizontal != 0 || moveVertical != 0)
         {
-            _movementDir = new Vector3(_moveHorizontal, 0.0f, _moveVertical);
+            _movementDir = new Vector3(moveHorizontal, 0.0f, moveVertical);
             _movementDir = _movementDir.normalized;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_movementDir), _rotationSpeed);
             _velocity += _acceleration * Time.deltaTime;
@@ -32,9 +32,7 @@ public class Movement : MonoBehaviour
         transform.Translate(_movementDir * (_velocity * Time.deltaTime), Space.World);
     }
 
-    private float _velocity = 0;
-    private float _moveHorizontal;
-    private float _moveVertical;
+    private float _velocity;
     private Vector3 _movementDir;
 
 }
