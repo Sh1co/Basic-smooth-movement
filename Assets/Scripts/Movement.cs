@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
         var moveHorizontal = Input.GetAxisRaw ("Horizontal");
         var moveVertical = Input.GetAxisRaw ("Vertical");
 
-        if (moveHorizontal != 0 || moveVertical != 0)
+        if (!Mathf.Approximately(moveHorizontal, 0) || !Mathf.Approximately(moveVertical,0))
         {
             _movementDir = new Vector3(moveHorizontal, 0.0f, moveVertical);
             _movementDir = _movementDir.normalized;
